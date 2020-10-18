@@ -1,107 +1,83 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="20200620蓝桥杯省赛题目（北京）"><meta name="keywords" content="problem"><meta name="author" content="X3B0A1"><meta name="copyright" content="X3B0A1"><title>20200620蓝桥杯省赛题目（北京） | Xblog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.8.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.8.2"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  hexoVersion: '4.2.1'
+} </script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Xblog" type="application/atom+xml">
+</head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#第一题"><span class="toc-number">1.</span> <span class="toc-text">第一题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第二题"><span class="toc-number">2.</span> <span class="toc-text">第二题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第三题"><span class="toc-number">3.</span> <span class="toc-text">第三题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第四题"><span class="toc-number">4.</span> <span class="toc-text">第四题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第五题"><span class="toc-number">5.</span> <span class="toc-text">第五题</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">X3B0A1</div><div class="author-info__description text-center">X3B0A1's blog</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">14</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">8</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Xblog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">20200620蓝桥杯省赛题目（北京）</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-06-20</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><p>qaq<br>一共5道题，部分题可能没有复制完整，先放题，题解和总结下午有时间写</p>
+<p>选择题我就不放了吧？</p>
+<p>样例和限制没复制，时间空间限制没写的话应该都是1000ms和125MB</p>
+<p>有的是有图的，这个博客目前放不了图，正在修，所以先凑合看吧。</p>
+<h3 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h3><blockquote>
+<p>题目描述:</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">在<span class="number">2020</span>年这个漫长的寒假里，虽然小蓝和他的同学们都在家里，</span><br><span class="line">但依旧通过网课的方式坚持学习，而老师们也依旧会布置作业</span><br><span class="line">和发放各种电子版的学习资料。为了方便小蓝的学习，妈妈会</span><br><span class="line">把老师发放的材料打印出来。而为了环保，妈妈一般都进行双</span><br><span class="line">面打印，也就是一张纸的正反面都打印出相应的内容。举个例</span><br><span class="line">子来说：如果一份电子材料有<span class="number">3</span>页，那么需要<span class="number">2</span>张纸进行打印；如</span><br><span class="line">果一份电子材料有<span class="number">4</span>页，那么还是需要<span class="number">2</span>张纸进行打印。现在已经</span><br><span class="line">知道了一份电子版的学习材料的页数N，你能帮小蓝计算一下需</span><br><span class="line">要几张纸吗？</span><br></pre></td></tr></table></figure>
 
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    - var flag = top_img === true ? 'no-bg' : ''
-    div#top-container(style=bg_img class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            if (theme.post_meta.date_type === 'both')
-              time.post-meta__date
-                i.fa.fa-calendar(aria-hidden="true")
-                =' '+_p('post.created')+' '+date(page.date, config.date_format)
-                span.post-meta__separator |
-                i.fa.fa-calendar-check-o(aria-hidden="true")
-                =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
-            else
-              - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-              time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
+<blockquote>
+<p>输入描述</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入整数N（<span class="number">0</span>≤N≤<span class="number">1000</span>），代表一份电子版的学习材料的页数。</span><br></pre></td></tr></table></figure>
 
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(decodeURI(page.permalink))) #[=decodeURI(page.permalink)]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+<blockquote>
+<p>输出描述</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输出双面打印所需纸的张数。</span><br></pre></td></tr></table></figure>
+
+<h3 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h3><p>编程实现：求完数</p>
+<blockquote>
+<p>背景信息：</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">因子：因子也叫因数，例如<span class="number">3</span>*<span class="number">5</span>=<span class="number">15</span>，那么<span class="number">3</span>和<span class="number">5</span>是</span><br><span class="line"><span class="number">15</span>的因子。同时<span class="number">15</span>*<span class="number">1</span>=<span class="number">15</span>，那么<span class="number">1</span>和<span class="number">15</span>也是<span class="number">15</span>的因子。</span><br><span class="line"></span><br><span class="line"><span class="number">1</span>，<span class="number">3</span>，<span class="number">5</span>，<span class="number">15</span> 这四个因子是<span class="number">15</span>的所有因子。</span><br><span class="line"></span><br><span class="line">完数：如果一个数等于不含它本身的其他因子之和，</span><br><span class="line">则称该数为‘完数’。如<span class="number">6</span>的因子有<span class="number">1</span>，<span class="number">2</span>，<span class="number">3</span>，<span class="number">6</span>，且</span><br><span class="line"><span class="number">1</span>+<span class="number">2</span>+<span class="number">3</span>= <span class="number">6</span>，因此<span class="number">6</span>是完数。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>题目描述:</p>
+</blockquote>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入一个正整数<span class="built_in">N</span>（<span class="number">0</span>&lt;<span class="built_in">N</span>&lt;<span class="number">10000</span>）,输出小于<span class="built_in">N</span>的所有完数</span><br><span class="line">及小于<span class="built_in">N</span>的完数个数（个数前加“*”，例如：*<span class="number">2</span>）。</span><br></pre></td></tr></table></figure>
+<p><strong>这题↑时间限制2000ms</strong></p>
+<h3 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h3><p>编程实现：求阴影面积</p>
+<blockquote>
+<p>题目描述:</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">用户输入一个正整数a（<span class="number">0</span>&lt;a&lt;<span class="number">100</span>）,作为如图半圆的直径，</span><br><span class="line">同时作为如图等腰直角三角形的直角边长度，求下图的阴影</span><br><span class="line">部分面积，如下所示：</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>提示信息：</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">三角形面积公式：S=(ah)/<span class="number">2</span>   （公式中a为三角形的底边，h为底边所对应的高）</span><br><span class="line"></span><br><span class="line">圆形面积公式：S=πr2（公式中r为圆的半径，π= <span class="number">3.14</span>）</span><br></pre></td></tr></table></figure>
+
+
+<p>已知条件：</p>
+<p>1) 半圆的直径和等腰直角三角形直角边长度相同；</p>
+<p>2) 三角形与半圆部分重叠；</p>
+<h3 id="第四题"><a href="#第四题" class="headerlink" title="第四题"></a>第四题</h3><p>编程实现：选择题判定</p>
+<blockquote>
+<p>题目描述:</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">受疫情的影响，<span class="number">2020</span>年蓝桥杯大赛青少年创意编程C++组的省赛在网上进行。选择题有<span class="number">5</span>道，都是单</span><br><span class="line">选题，每道<span class="number">30</span>分，共计<span class="number">150</span>分。每道选择题选对得<span class="number">30</span>分，选错或者不选得<span class="number">0</span>分。</span><br><span class="line"></span><br><span class="line">注意以下仅为假设，不代表本场考试选择题的真实答案，仅是针对本编程题假设出的答案。</span><br><span class="line"></span><br><span class="line">假设正确的答案为“DCBAD”，那么你能根据选手的提交情况，判定选手的选择题总分吗？选手提</span><br><span class="line">交一个由<span class="number">5</span>个字符组成的字符串，代表选手的选项。字符串仅能包含如下<span class="number">5</span>种字符：“D”、“C”</span><br><span class="line">、“B”、“A”、“E”。其中“A”、“B”、“C”、“D”代表选手选择了某个选项，而“E”代表选手未做该题。</span><br></pre></td></tr></table></figure>
+
+<h3 id="第五题"><a href="#第五题" class="headerlink" title="第五题"></a>第五题</h3><p>话说这题有点，，，</p>
+<p>编程实现：节气</p>
+<blockquote>
+<p>题目描述:</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">夏至将至。《中国天文年历》显示，北京时间<span class="number">6</span>月<span class="number">21</span>日，也就是明天，夏至伴随着接天莲叶的碧，</span><br><span class="line">和映日荷花的红，即将盛装登场。夏至是中国“二十四节气”的第十个节气，“二十四节气”被</span><br><span class="line">列入联合国教科文组织人类非物质文化遗产名录。在国际气象界，这一已有千年历史的时间认知</span><br><span class="line">体系被誉为“中国第五大发明”。</span><br><span class="line"></span><br><span class="line">春雨惊春清谷天，夏满芒夏暑相连。秋处露秋寒霜降，冬雪雪冬小大寒。二十四节气，在四季轮</span><br><span class="line">回流淌，每个节气都有它较为稳定的日子。下表给出了农历庚子年（公历<span class="number">2020</span>年<span class="number">1</span>月<span class="number">25</span>日~<span class="number">2021</span>年<span class="number">2</span></span><br><span class="line">月<span class="number">11</span>日）中，二十四个节气的名称，公历具体日期及汉语拼音的缩写。</span><br></pre></td></tr></table></figure>
+
+<p>（图片炸了图片炸了）</p>
+<blockquote>
+<p>输入描述</p>
+</blockquote>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">整数M，N（<span class="number">2</span>≤M≤<span class="number">12</span>,<span class="number">1</span>≤N≤<span class="number">31</span>），M，N分别代表公历<span class="number">2020</span>年的某月，某日。所给出的数据均为合法日期。</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>输出描述</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果当天恰好是一个节气，输出这个节气的汉语拼音缩写，如当天不是节气则输出下一个节气的汉语拼音缩写</span><br></pre></td></tr></table></figure>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">X3B0A1</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://x3b0a1.github.io/2020/06/20/20200620%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%9C%81%E8%B5%9B%E9%A2%98%E7%9B%AE/">https://x3b0a1.github.io/2020/06/20/20200620%E8%93%9D%E6%A1%A5%E6%9D%AF%E7%9C%81%E8%B5%9B%E9%A2%98%E7%9B%AE/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/problem/">problem</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2020/08/18/%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%8A%A0%E6%B3%95/"><i class="fa fa-chevron-left">  </i><span>高精度加法复习笔记</span></a></div><div class="next-post pull-right"><a href="/2020/05/30/%E5%B0%8F%E5%8D%87%E5%88%9D%E6%95%B0%E8%AE%BA%E7%AC%94%E8%AE%B0/"><span>数论笔记</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2020 By X3B0A1</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.8.2"></script><script src="/js/fancybox.js?version=1.8.2"></script><script src="/js/sidebar.js?version=1.8.2"></script><script src="/js/copy.js?version=1.8.2"></script><script src="/js/fireworks.js?version=1.8.2"></script><script src="/js/transition.js?version=1.8.2"></script><script src="/js/scroll.js?version=1.8.2"></script><script src="/js/head.js?version=1.8.2"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

@@ -1,107 +1,72 @@
-extends includes/layout.pug
-
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    - var flag = top_img === true ? 'no-bg' : ''
-    div#top-container(style=bg_img class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            if (theme.post_meta.date_type === 'both')
-              time.post-meta__date
-                i.fa.fa-calendar(aria-hidden="true")
-                =' '+_p('post.created')+' '+date(page.date, config.date_format)
-                span.post-meta__separator |
-                i.fa.fa-calendar-check-o(aria-hidden="true")
-                =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
-            else
-              - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-              time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
-
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(decodeURI(page.permalink))) #[=decodeURI(page.permalink)]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="动态规划复习笔记"><meta name="keywords" content="algorithm"><meta name="author" content="X3B0A1"><meta name="copyright" content="X3B0A1"><title>动态规划复习笔记 | Xblog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.8.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.8.2"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  hexoVersion: '4.2.1'
+} </script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Xblog" type="application/atom+xml">
+</head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0-前言"><span class="toc-number">1.</span> <span class="toc-text">0.前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目录"><span class="toc-number">2.</span> <span class="toc-text">目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态规划的基本概念"><span class="toc-number">3.</span> <span class="toc-text">动态规划的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#f-n-min-f-n-1-f-n-5-f-n-11"><span class="toc-number">3.1.</span> <span class="toc-text">$f(n) &#x3D; min[ f(n-1), f(n-5), f(n-11)] $</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#无后效性："><span class="toc-number">3.2.</span> <span class="toc-text">无后效性：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最优子结构："><span class="toc-number">3.3.</span> <span class="toc-text">最优子结构：</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#当一道题可以分成若干个子问题，并且满足无后效性和最优子结构时，我们就可以使用动态规划来做"><span class="toc-number">3.3.1.</span> <span class="toc-text">当一道题可以分成若干个子问题，并且满足无后效性和最优子结构时，我们就可以使用动态规划来做</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-动态规划的解题步骤："><span class="toc-number">4.</span> <span class="toc-text">2.动态规划的解题步骤：</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">X3B0A1</div><div class="author-info__description text-center">X3B0A1's blog</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">14</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">8</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Xblog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">动态规划复习笔记</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-05-18</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="0-前言"><a href="#0-前言" class="headerlink" title="0.前言"></a>0.前言</h2><p>本蒟蒻学习完动态规划后仍然有些懵，于是就有了这篇复习笔记，希望可以通过这种方式使我掌握动态规划。</p>
+<p>欢迎各位大佬挑错。</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li><p>动态规划的基本概念</p>
+<ol>
+<li><p>什么是动态规划</p>
+</li>
+<li><p>动态转移方程</p>
+</li>
+<li><p>无后效性</p>
+</li>
+<li><p>最优子结构</p>
+</li>
+</ol>
+</li>
+<li><p>动态规划解题步骤</p>
+</li>
+</ol>
+<h2 id="动态规划的基本概念"><a href="#动态规划的基本概念" class="headerlink" title="动态规划的基本概念"></a>动态规划的基本概念</h2><p>什么是动态规划？</p>
+<p><strong>把一个大问题转换成若干个规模较小的同类型问题</strong>（子问题），当我们求出这些子问题的答案，大问题便可以求出。</p>
+<p>在求解这些小问题的过程中，需要<strong>把重复计算的答案记录到数组中</strong>，如果遇到相同的小问题，便直接查询出结果。<br><img src="https://cdn.luogu.com.cn/upload/image_hosting/1wt2w1ap.png" alt=""></p>
+<p>我们来看一下官方的说法：</p>
+<ul>
+<li>指把多阶段过程转化为一系列单阶段问题，利用各阶段之间的关系，逐个求解</li>
+</ul>
+<p>其中，各阶段之间的关系，指的就是<strong>状态转移方程</strong>。那么状态转移方程是什么呢？其实就是大问题与子问题之间的关系。</p>
+<p><strong>举个例子</strong>：假如我们有<strong>1</strong>元、<strong>5</strong>元和<strong>11</strong>元的纸币若干张，怎样才能使用尽可能少的纸币凑15元呢？</p>
+<p>按照正常的思路，我们会尽可能的多拿面值大的：</p>
+<p>$11×1 + 1×4 = 15$ ，一共5张。</p>
+<p>但是这是最优的吗？</p>
+<p>可以发现<br>$3×5 = 15$ ，一共3张，按常规思路来，并不是最优的。</p>
+<p>我们不妨倒推回去 : 凑成15，有三种情况：</p>
+<ol>
+<li>取11： $11 + 4 = 15$</li>
+<li>取5：  $5 + 10 = 15$</li>
+<li>取1： $1 + 14 = 15$</li>
+</ol>
+<p>以此类推，我们可以发现第二种，取5所需的纸币是最少的。</p>
+<p>我们用$f(n)$来表示凑出n元所需的纸币数：</p>
+<p>要想求$f(n)$，只需要知道 $f(n-1),f(n-5),f(n-11)$ 三者中的最小值，也就是：</p>
+<h3 id="f-n-min-f-n-1-f-n-5-f-n-11"><a href="#f-n-min-f-n-1-f-n-5-f-n-11" class="headerlink" title="$f(n) = min[ f(n-1), f(n-5), f(n-11)] $"></a>$f(n) = min[ f(n-1), f(n-5), f(n-11)] $</h3><p>这就是一个<strong>动态转移方程</strong></p>
+<hr>
+<p>还有一些其他的概念：</p>
+<hr>
+<h3 id="无后效性："><a href="#无后效性：" class="headerlink" title="无后效性："></a>无后效性：</h3><p>要求出$f(15)$，只需要知道$f(14),f(10),f(4)$的值，而$f(14),f(10),f(4)$是如何算出来的，对之后的问题没有影响。<br><strong>将来的和之前的没有关系，就是无后效性</strong></p>
+<hr>
+<h3 id="最优子结构："><a href="#最优子结构：" class="headerlink" title="最优子结构："></a>最优子结构：</h3><p>我们只要知道子问题$f(14)、f(10)、f(4)$的最优解，就可以得出大问题$f(15)$的最优解。</p>
+<p><strong>大问题的最优解可以由小问题的最优解推出</strong></p>
+<p>这种性质就叫“最优子结构性质”。</p>
+<hr>
+<h4 id="当一道题可以分成若干个子问题，并且满足无后效性和最优子结构时，我们就可以使用动态规划来做"><a href="#当一道题可以分成若干个子问题，并且满足无后效性和最优子结构时，我们就可以使用动态规划来做" class="headerlink" title="当一道题可以分成若干个子问题，并且满足无后效性和最优子结构时，我们就可以使用动态规划来做"></a>当一道题可以分成若干个子问题，并且满足无后效性和最优子结构时，我们就可以使用动态规划来做</h4><hr>
+<h2 id="2-动态规划的解题步骤："><a href="#2-动态规划的解题步骤：" class="headerlink" title="2.动态规划的解题步骤："></a>2.动态规划的解题步骤：</h2><ol>
+<li>把一个大问题分成几个小问题</li>
+<li>求解小问题</li>
+<li>从小问题中得到大问题的解</li>
+</ol>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">X3B0A1</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://x3b0a1.github.io/2020/05/18/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E2%80%94%E2%80%94%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">https://x3b0a1.github.io/2020/05/18/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E2%80%94%E2%80%94%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/algorithm/">algorithm</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2020/05/18/A+B/"><i class="fa fa-chevron-left">  </i><span>A+B problem 题解</span></a></div><div class="next-post pull-right"><a href="/2020/05/18/%E5%88%B6%E4%BD%9C%E4%BA%94%E5%AD%90%E6%A3%8Bai/"><span>制作五子棋AI</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2020 By X3B0A1</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.8.2"></script><script src="/js/fancybox.js?version=1.8.2"></script><script src="/js/sidebar.js?version=1.8.2"></script><script src="/js/copy.js?version=1.8.2"></script><script src="/js/fireworks.js?version=1.8.2"></script><script src="/js/transition.js?version=1.8.2"></script><script src="/js/scroll.js?version=1.8.2"></script><script src="/js/head.js?version=1.8.2"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

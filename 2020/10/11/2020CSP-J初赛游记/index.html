@@ -1,107 +1,64 @@
-extends includes/layout.pug
-
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    - var flag = top_img === true ? 'no-bg' : ''
-    div#top-container(style=bg_img class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            if (theme.post_meta.date_type === 'both')
-              time.post-meta__date
-                i.fa.fa-calendar(aria-hidden="true")
-                =' '+_p('post.created')+' '+date(page.date, config.date_format)
-                span.post-meta__separator |
-                i.fa.fa-calendar-check-o(aria-hidden="true")
-                =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
-            else
-              - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-              time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
-
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(decodeURI(page.permalink))) #[=decodeURI(page.permalink)]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="2020CSP-J初赛游记"><meta name="keywords" content=""><meta name="author" content="X3B0A1"><meta name="copyright" content="X3B0A1"><title>2020CSP-J初赛游记 | Xblog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.8.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.8.2"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  hexoVersion: '4.2.1'
+} </script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Xblog" type="application/atom+xml">
+</head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-赛前"><span class="toc-number">1.</span> <span class="toc-text">1.赛前</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备"><span class="toc-number">1.1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#考前"><span class="toc-number">1.2.</span> <span class="toc-text">考前</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#赛时"><span class="toc-number">2.</span> <span class="toc-text">赛时</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#选择"><span class="toc-number">2.1.</span> <span class="toc-text">选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#阅读"><span class="toc-number">2.2.</span> <span class="toc-text">阅读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#补全程序"><span class="toc-number">2.3.</span> <span class="toc-text">补全程序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#赛后"><span class="toc-number">3.</span> <span class="toc-text">赛后</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RP"><span class="toc-number">5.</span> <span class="toc-text">RP++</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">X3B0A1</div><div class="author-info__description text-center">X3B0A1's blog</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">14</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">8</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Xblog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">2020CSP-J初赛游记</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-10-11</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h2 id="1-赛前"><a href="#1-赛前" class="headerlink" title="1.赛前"></a>1.赛前</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>从赛前一周说起吧qwq</p>
+<p>赛前一周开始着急，然后开始啃蓝书，写初赛博客（虽然没写完）</p>
+<p>然后一直没完整的做过套题，甚至说连程序阅读和填空都几乎没碰过</p>
+<p>但是国庆期间看似努力准备初赛其实在划水</p>
+<p>一共就做了两三次不完整的往年的题，基本选择题的正确率在70%吧，阅读题没碰</p>
+<p>一直到10月9号开始重视起来，那天在学校没事儿干，写了四页关于图的遍历的教程</p>
+<p>10号才接触了原码反码补码</p>
+<p>11号上午起来开始抱佛脚，先后复习了进制转换，一堆数学的东西，图片的存储还有一些排序。</p>
+<p>然后12点半多就从家出发去考场</p>
+<h3 id="考前"><a href="#考前" class="headerlink" title="考前"></a>考前</h3><p>到考场看好多人在看一个考点聚焦，就是一个知识点整合的小报，疑似是什么机构发的，窝也想看看但是没找到/kk。</p>
+<p>还看见俩tctm的老师在喊：tctm的学院来签到！ 差评</p>
+<p>人反正挺多的，后来来了个大巴，里头下来十几个英华的学生（我一眼认出来我妈看了半天还不知道）果然是英华啊，有排面www。</p>
+<p>嗯还看见有天津一中，南开，二南开的一堆大佬，，，ccccorz</p>
+<p>约了一个网友面基，，，</p>
+<h2 id="赛时"><a href="#赛时" class="headerlink" title="赛时"></a>赛时</h2><p>进去本来想拍个照啥的，但是看都着急往里走也就没拍</p>
+<p>那位网友也俩系不上了，算了不管了</p>
+<p>我是9考场（考点天津第45中学），上到二楼，签到，进考场</p>
+<p>问了老师之后发现我的手环不能带</p>
+<p>惨</p>
+<p>于是手环和手机还有袋子被放在了考jiao场shi外</p>
+<p>发草稿纸，答题卡，卷子，呼，这印刷质量我给五星好评，，，，，，，分期付/xyx</p>
+<p>开考，没有手表看不了时间挺难受的，不好控制进度，，</p>
+<p>大概翻了一下题目，开始写</p>
+<h3 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h3><p>前边几个都还行，然后那个伪代码差评，有亿点看不懂</p>
+<p>再往后考了一堆组合数学，于是我靠我那一点点的小奥基础，和亿点点的暴力枚举，算了出来，，</p>
+<p>有个冒泡排序的最小次数，嗯最开始不假思索的选了$n^2$,后来又看了一遍原来是 $n-1$，至少改过来了，还行</p>
+<h3 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h3><p>有点难度啊，基本上就是死啃，然后模拟，但是都没看懂，，</p>
+<p>第三题的dfs太阴间了，直接放弃aa</p>
+<p>而且因为没有表，无法准确控制进度，就直接能做的做，能蒙的蒙了</p>
+<h3 id="补全程序"><a href="#补全程序" class="headerlink" title="补全程序"></a>补全程序</h3><p>第一个挺简单的，一边过，并且能保证五个全对，15分到手</p>
+<p>第二个没大看懂，就半蒙半做的写了几个，又蒙了几个，然后就这样了</p>
+<h2 id="赛后"><a href="#赛后" class="headerlink" title="赛后"></a>赛后</h2><p>对答案，发现自己组合数学题全对了www，小奥NB！！！</p>
+<p>目测：</p>
+<p>选择24分</p>
+<p>阅读拿了6+4.5+8.5</p>
+<p>完善程序拿了15+6</p>
+<p>合计64分</p>
+<p>差强人意</p>
+<p>过肯定是过了</p>
+<p>后来了解到那位朋友没有手机，来我考场找我我也没看见，惨，面基失败，她77分多，复赛再面基8qwq</p>
+<p>初赛过了，那就滚去准备复赛了，期望拿200+，</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>以后参加大考试啥的一定不要带电子表！！带机械表！</li>
+<li>这次复习的时候过于注重那些计算机基础知识了，以至于有一些算法都记不太清，耽误了后边做题。</li>
+<li>时间控制不好，做题的时候有亿点慌乱（与没有表有关系）</li>
+<li>考前练习不够，都没有完整的掐时间的做过一套题</li>
+</ul>
+<p>但，不管怎样，初赛肯定是过了，这次吸取教训，准备11月的复赛</p>
+<h2 id="RP"><a href="#RP" class="headerlink" title="RP++"></a>RP++</h2></div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">X3B0A1</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://x3b0a1.github.io/2020/10/11/2020CSP-J%E5%88%9D%E8%B5%9B%E6%B8%B8%E8%AE%B0/">https://x3b0a1.github.io/2020/10/11/2020CSP-J%E5%88%9D%E8%B5%9B%E6%B8%B8%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2021/07/29/about%20this%20blog/"><i class="fa fa-chevron-left">  </i><span>关于本博客</span></a></div><div class="next-post pull-right"><a href="/2020/09/17/COCI2017-2018#6/"><span>COCI2017-2018#6</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2020 By X3B0A1</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.8.2"></script><script src="/js/fancybox.js?version=1.8.2"></script><script src="/js/sidebar.js?version=1.8.2"></script><script src="/js/copy.js?version=1.8.2"></script><script src="/js/fireworks.js?version=1.8.2"></script><script src="/js/transition.js?version=1.8.2"></script><script src="/js/scroll.js?version=1.8.2"></script><script src="/js/head.js?version=1.8.2"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>

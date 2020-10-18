@@ -1,107 +1,44 @@
-extends includes/layout.pug
-
-block top_img
-  - var top_img = page.top_img || theme.post_meta.top_img || theme.top_img || config.top_img
-  if (top_img && page.top_img !== false)
-    - var bg_img = top_img !== true ? `background-image: url(${top_img})` : ''
-    - var flag = top_img === true ? 'no-bg' : ''
-    div#top-container(style=bg_img class=flag)
-      include ./includes/header.pug
-      #post-info
-        #post-title= page.title || _p('no_title')
-        #post-meta
-          if (theme.post_meta.date_type)
-            if (theme.post_meta.date_type === 'both')
-              time.post-meta__date
-                i.fa.fa-calendar(aria-hidden="true")
-                =' '+_p('post.created')+' '+date(page.date, config.date_format)
-                span.post-meta__separator |
-                i.fa.fa-calendar-check-o(aria-hidden="true")
-                =' '+_p('post.updated')+' '+date(page.updated, config.date_format)
-            else
-              - var date_type = theme.post_meta.date_type === 'updated' ? 'updated' : 'date'
-              time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-          if (theme.post_meta.categories && page.categories.data.length > 0)
-            if (theme.post_meta.date_type)
-              span.post-meta__separator |
-            each item, index in page.categories.data
-              i.fa.fa-inbox.post-meta__icon(aria-hidden="true")
-              a(href=url_for(item.path)).post-meta__categories #[=item.name]
-              if (index < page.categories.data.length - 1)
-                 i.fa.fa-angle-right(aria-hidden="true")
-          if (theme.disqus.enable && theme.disqus.count)
-            if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-              span.post-meta__separator |
-            i.fa.fa-comment-o.post-meta__icon(aria-hidden="true")
-            a(href=url_for(page.path) + '#disqus_thread')
-              span.disqus-comment-count(data-disqus-identifier=page.path)
-          if (theme.wordcount && theme.wordcount.enable)
-            .post-meta-wordcount
-              span= _p('post.wordcount') + ': '
-              span.word-count= wordcount(page.content)
-              span.post-meta__separator |
-              span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-  else
-    div#top-container.plain
-      include ./includes/header.pug
-
-block content
-  article#post(class="")
-    if (!top_img)
-      #post-title.plain= page.title || _p('no_title')
-      #post-meta
-        if (theme.post_meta.date_type)
-          - var date_type = theme.post_meta.date_type === 'updated' ? '' : 'date'
-          time.post-meta__date #[i.fa.fa-calendar(aria-hidden="true")] #[=date(page[date_type], config.date_format)]
-        if (theme.post_meta.categories && page.categories.data.length > 0)
-          if (theme.post_meta.date_type)
-            span.post-meta__separator |
-          each item, index in page.categories.data
-            i.fa.fa-inbox(aria-hidden="true")
-            a(href=url_for(item.path)).post-meta__categories  #[=item.name]
-            if (index < page.categories.data.length - 1)
-                i.fa.fa-angle-right.post-meta__separator(aria-hidden="true")
-        if (theme.disqus.enable && theme.disqus.count)
-          if (theme.post_meta.date_type || theme.post_meta.categories && page.categories.data.length > 0)
-            span.post-meta__separator |
-          i.fa.fa-comment-o(aria-hidden="true")
-          a(href=url_for(page.path) + '#disqus_thread')
-            span.disqus-comment-count(data-disqus-identifier=page.path)
-        if (theme.wordcount && theme.wordcount.enable)
-          span.post-meta__separator |
-          span.post-meta-wordcount
-            span= _p('post.wordcount') + ': '
-            span.word-count= wordcount(page.content)
-            span.post-meta__separator |
-            span= _p('post.min2read', min2read(page.content, {cn: 350, en: 160}))
-    #post-content.article-container!= page.content
-  if (theme.post_copyright && theme.post_copyright.enable)
-    .post-copyright
-      .post-copyright__author
-        span.post-copyright-meta= _p('post.copyright.author') + ": "
-        span.post-copyright-info
-          a(href=`mailto:${config.email}`) #[=config.author]
-      .post-copyright__type
-        span.post-copyright-meta= _p('post.copyright.link') + ": "
-        span.post-copyright-info
-          a(href=url_for(decodeURI(page.permalink))) #[=decodeURI(page.permalink)]
-      .post-copyright__notice
-        span.post-copyright-meta= _p('post.copyright.copyright_notice') + ": "
-        span.post-copyright-info!= _p('post.copyright.copyright_content', theme.post_copyright.license_url, theme.post_copyright.license, config.url, config.title)
-  if (theme.post_meta.tags)
-    .post-meta__tag-list
-      each item, index in page.tags.data
-        a(href=url_for(item.path)).post-meta__tags #[=item.name]
-  if (theme.QR_code)
-    if (theme.QR_code.length > 0)
-      .post-qr-code
-        each item in theme.QR_code
-          .post-qr-code-item
-            img.post-qr-code__img(src=(item.itemlist||item).img)
-            .post-qr-code__desc=(item.itemlist||item).text
-  include includes/share/index.pug
-  include includes/pagination.pug
-  if (theme.adv && theme.adv.enable)
-    .post-adv!= theme.adv.info
-  if page.comments !== false
-    include includes/comments/index.pug
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="天津游记"><meta name="keywords" content="daily life"><meta name="author" content="X3B0A1"><meta name="copyright" content="X3B0A1"><title>天津游记 | Xblog</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.8.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.8.2"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  hexoVersion: '4.2.1'
+} </script><meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Xblog" type="application/atom+xml">
+</head><body><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#本文记录了我在5月17-19日三天，去天津办户口（玩耍）的事情，由于是在回家路上写的，没有联网，所以莫得图片"><span class="toc-number">1.</span> <span class="toc-text">本文记录了我在5月17-19日三天，去天津办户口（玩耍）的事情，由于是在回家路上写的，没有联网，所以莫得图片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#day-1"><span class="toc-number"></span> <span class="toc-text">day 1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Day-2"><span class="toc-number"></span> <span class="toc-text">Day 2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#day-3"><span class="toc-number"></span> <span class="toc-text">day 3</span></a></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.png"></div><div class="author-info__name text-center">X3B0A1</div><div class="author-info__description text-center">X3B0A1's blog</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">14</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">8</span></a></div></div></div><div id="content-outer"><div class="no-bg" id="top-container"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">Xblog</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">天津游记</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-05-19</time></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h3 id="本文记录了我在5月17-19日三天，去天津办户口（玩耍）的事情，由于是在回家路上写的，没有联网，所以莫得图片"><a href="#本文记录了我在5月17-19日三天，去天津办户口（玩耍）的事情，由于是在回家路上写的，没有联网，所以莫得图片" class="headerlink" title="本文记录了我在5月17-19日三天，去天津办户口（玩耍）的事情，由于是在回家路上写的，没有联网，所以莫得图片"></a>本文记录了我在5月17-19日三天，去天津办户口（玩耍）的事情，由于是在回家路上写的，没有联网，所以莫得图片</h3><p>个人的游记，我只是把一些事情记录一下，并没有用华丽的语言修饰，我个人也不是很喜欢这种“奢侈”的装饰。。。</p>
+<h2 id="day-1"><a href="#day-1" class="headerlink" title="day 1"></a>day 1</h2><p>71.5.0202</p>
+<p>早上比较兴奋，5.50自己醒了，后来又睡着了，然后7点左右我妈把我叫醒。简单收拾收拾就出发了</p>
+<p>一点也不堵车，到了之后先去了和平里搬箱子（搬家），顺便联系了一下网上认识的五中的一个学姐。吐槽一句：和平里那个房子真的是味道特大！！！</p>
+<p>然后去了香槟城，进去把包放下，准备去吃午饭</p>
+<p>我忘了叫啥来着，吃的自助饺子，挺划算的，3个人90左右，饺子是厨师现包的，然后可以自己拿自己煮，还有好多小菜啥的（写到这儿我饿了QAQ）</p>
+<p>然后吃完饺子去了武清图书馆，借了4本书，人挺少的，进馆要出示天津的健康码啥的，我们现弄，门口的保安很热心，也很有耐心，帮我们弄好。</p>
+<p>然后去了区政府对面的公园，特别干净，花啊树啊都特别整齐，草（一种植物）也特别绿。</p>
+<p>差不多逛一圈回家，某位上海初二大佬让我帮忙做了个html的大转盘，他们英语课用。</p>
+<p>做完之后写了篇题解，然后打算研究一下搭建个人博客，于是过了一晚上，搭出了雏形。</p>
+<p>最后11点多睡觉了，打的地铺，有一个单人折叠床但是不想睡，嘎吱嘎吱响。</p>
+<h2 id="Day-2"><a href="#Day-2" class="headerlink" title="Day 2"></a>Day 2</h2><p>81.5.0202</p>
+<p>早上7点多醒了，吃饭，上课（摸鱼）。上午把个人博客搭完了。（就是现在这个）</p>
+<p>中午我爸妈出去买了好多吃的（凉皮啊凉面啊炸糕啊田螺啊凉菜啊包子啊等等等等）嗯都挺好吃的（滑稽）</p>
+<p>下午上了节py爬虫课，爬了京东的商品，后来想爬淘宝发现有反爬虫，算了。。。</p>
+<p>晚上在屋子里和我爸玩了会儿球，我妈在旁边边溜达，边听（唱）老歌。。。（笑）</p>
+<p>后来就睡觉了</p>
+<p>顺便说一下武清这边挺干净的，上午看到了路上洒水车，一条路走好几遍，每条街都特别干净，以及武清的路基本上都是方方正正的。</p>
+<p>还有就是天津18号都开学了，我家楼下就是小学，然后昨天看他们上学，上操啥的挺有意思</p>
+<p>武清这边学校真的多，说有七八十所都不夸张，基本上学校挨着学校，早上在楼上看楼下上学的人，就有4种校服</p>
+<h2 id="day-3"><a href="#day-3" class="headerlink" title="day 3"></a>day 3</h2><p>91.5.0202</p>
+<p>早上8点才醒，慌慌忙忙一边上课一边吃饭，然后又试了试淘宝的爬虫，然而并没有什么*用。。。</p>
+<p>后来准备回家，纠结了一会儿是在天津吃还是在北京吃，最后决定回家。</p>
+<p>回家之前在楼下的一家超市（东西特便宜）买了点小零食（薯片啊面包啊还有一堆辣的肉啥的）（逐渐肥宅化），然后就开车回家喽</p>
+<p>啊对了，路上路过杨村一中，我们开车绕着看了一圈，校园真大，环境也好，绿化也特别多…我好像还看见了里头的学生，加油考上杨一！</p>
+<p>The end</p>
+<p>by X3B0A1.</p>
+<p>2020.5.19</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">X3B0A1</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://x3b0a1.github.io/2020/05/19/%E5%A4%A9%E6%B4%A5%E2%80%9C%E6%B8%B8%E2%80%9D%E8%AE%B0/">https://x3b0a1.github.io/2020/05/19/%E5%A4%A9%E6%B4%A5%E2%80%9C%E6%B8%B8%E2%80%9D%E8%AE%B0/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/daily-life/">daily life</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2020/05/28/%E6%89%8B%E5%8A%A8%E6%94%B6%E8%97%8F%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84%E6%96%87%E7%AB%A0/"><i class="fa fa-chevron-left">  </i><span>手动收藏一些有用的文章</span></a></div><div class="next-post pull-right"><a href="/2020/05/18/A+B/"><span>A+B problem 题解</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer><div class="layout" id="footer"><div class="copyright">&copy;2013 - 2020 By X3B0A1</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.8.2"></script><script src="/js/fancybox.js?version=1.8.2"></script><script src="/js/sidebar.js?version=1.8.2"></script><script src="/js/copy.js?version=1.8.2"></script><script src="/js/fireworks.js?version=1.8.2"></script><script src="/js/transition.js?version=1.8.2"></script><script src="/js/scroll.js?version=1.8.2"></script><script src="/js/head.js?version=1.8.2"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
