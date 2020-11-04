@@ -42,6 +42,32 @@
   </entry>
   
   <entry>
+    <title>字符串复习笔记</title>
+    <link href="https://x3b0a1.github.io/2020/11/04/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://x3b0a1.github.io/2020/11/04/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <published>2020-11-04T14:00:00.000Z</published>
+    <updated>2020-11-04T14:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>暂且把它放在algorithm标签里，虽然说我不知道这算不算</p><p>还有2天就复赛了，真的是一点也不慌（确信）</p><p>主要还是文化课太**了以至于没时间搞</p><p>挤时间来复习一下，从字符串开始</p><h2 id="声明变量"><a href="#声明变量" class="headerlink" title="声明变量"></a>声明变量</h2><p>头文件#include &lt; string &gt;</p><p>string str</p><h2 id="读入与写出"><a href="#读入与写出" class="headerlink" title="读入与写出"></a>读入与写出</h2><p>读入一段： cin &gt;&gt; str;</p><p>读入一行： getline(cin, str);</p><p>写出 ：cout &lt;&lt; str;</p><h2 id="基操"><a href="#基操" class="headerlink" title="基操"></a>基操</h2><p>(<del>基情操作</del>基本操作)</p><p>通过变量名操作整体</p><p>通过下标操作部分</p><p>比较 ==  !=  &lt;  &gt;  &lt;=  &gt;=  (使用acill码比较 (好像是这么拼的) )</p><p>拼接：str1+str2</p><h2 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h2><p>长度：str.size()</p><p>子串查找：  str.find(子串)  返回的是第一个字母的下标</p><p>替换： str1 = str0.replace(起始下标,终止下标,替换内容)</p><p>截取： str1 = str0.substr(截取起始下标，终止下标)</p><h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>暂时想不到别的</p><p>普及组一般字符串题都比较水的吧模拟一下就好</p><p>总之对我来说不要产生低错就行</p><p>end.</p><p>by X3B0A2 (我也不知道为什么是2)</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;暂且把它放在algorithm标签里，虽然说我不知道这算不算&lt;/p&gt;
+&lt;p&gt;还有2天就复赛了，真的是一点也不慌（确信）&lt;/p&gt;
+&lt;p&gt;主要还是文化课太**了以至于没时间搞&lt;/p&gt;
+&lt;p&gt;挤时间来复习一下，从字符串开始&lt;/p&gt;
+&lt;h2 id=&quot;声明变量&quot;&gt;&lt;a href=&quot;#</summary>
+      
+    
+    
+    
+    
+    <category term="algorithm" scheme="https://x3b0a1.github.io/tags/algorithm/"/>
+    
+  </entry>
+  
+  <entry>
     <title>2020CSP-J初赛游记</title>
     <link href="https://x3b0a1.github.io/2020/10/11/2020CSP-J%E5%88%9D%E8%B5%9B%E6%B8%B8%E8%AE%B0/"/>
     <id>https://x3b0a1.github.io/2020/10/11/2020CSP-J%E5%88%9D%E8%B5%9B%E6%B8%B8%E8%AE%B0/</id>
