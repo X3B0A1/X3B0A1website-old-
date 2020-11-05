@@ -42,6 +42,30 @@
   </entry>
   
   <entry>
+    <title>赛前救命知识</title>
+    <link href="https://x3b0a1.github.io/2020/11/05/%E8%B5%9B%E5%89%8D%E6%95%91%E5%91%BD%E7%9F%A5%E8%AF%86/"/>
+    <id>https://x3b0a1.github.io/2020/11/05/%E8%B5%9B%E5%89%8D%E6%95%91%E5%91%BD%E7%9F%A5%E8%AF%86/</id>
+    <published>2020-11-05T14:00:00.000Z</published>
+    <updated>2020-11-05T14:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>还有1天复赛。</p><p>文化课太 ** 的 ** 了</p><h2 id="考试注意事项相关"><a href="#考试注意事项相关" class="headerlink" title="考试注意事项相关"></a>考试注意事项相关</h2><h3 id="携带物品"><a href="#携带物品" class="headerlink" title="携带物品"></a>携带物品</h3><ul><li>准考证</li><li>参赛证</li><li>身份证</li><li>承诺书</li><li>健康码</li></ul><h3 id="时间地点"><a href="#时间地点" class="headerlink" title="时间地点"></a>时间地点</h3><h4 id="地点"><a href="#地点" class="headerlink" title="地点"></a>地点</h4><p>南开中学北院翔宇楼五楼机房</p><h4 id="时间"><a href="#时间" class="headerlink" title="时间"></a>时间</h4><p>7：50进场试机</p><p>8：30开始比赛</p><p>12：00结束</p><h3 id="文件相关"><a href="#文件相关" class="headerlink" title="文件相关"></a>文件相关</h3><h4 id="后缀名"><a href="#后缀名" class="headerlink" title="后缀名"></a>后缀名</h4><p>test.cpp</p><h4 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h4><p>D盘下建立以准考证号为名的文件夹</p><p>并给每个题目建立子文件夹</p><p>记得删除无用文件</p><h2 id="算法相关"><a href="#算法相关" class="headerlink" title="算法相关"></a>算法相关</h2><h3 id="程序框架（？）"><a href="#程序框架（？）" class="headerlink" title="程序框架（？）"></a>程序框架（？）</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//code here</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="C输入输出"><a href="#C输入输出" class="headerlink" title="C输入输出"></a>C输入输出</h3><p>头文件</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br></pre></td></tr></table></figure><p>输入：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a);</span><br></pre></td></tr></table></figure><p>输出：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"a是%d"</span>,a);</span><br></pre></td></tr></table></figure><p>其中，第一个参数是占位符，常用占位符：</p><ul><li>%d int</li><li>%l64d longlong(windows)</li><li>%lld longlong(Linux)</li><li>%f float double(输出)</li><li>%lf double(读入)</li><li>%.2f 保留两位小数</li><li>%c char</li><li>%s string</li></ul><h3 id="文件重定向"><a href="#文件重定向" class="headerlink" title="文件重定向"></a>文件重定向</h3><p>头文件</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br></pre></td></tr></table></figure><p>在主函数里加上：</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">freopen(<span class="string">"test.in"</span>,<span class="string">"r"</span>,<span class="built_in">stdin</span>);</span><br><span class="line">freopen(<span class="string">"test.out"</span>,<span class="string">"w"</span>,<span class="built_in">stdout</span>);</span><br><span class="line"><span class="comment">//code here</span></span><br><span class="line">fclose(<span class="built_in">stdin</span>);</span><br><span class="line">fclose(<span class="built_in">stdout</span>);</span><br></pre></td></tr></table></figure><h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>rp++;</p><p>全篇字少事大.</p><p>end.</p><p>by X3B0A1</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;还有1天复赛。&lt;/p&gt;
+&lt;p&gt;文化课太 ** 的 ** 了&lt;/p&gt;
+&lt;h2 id=&quot;考试注意事项相关&quot;&gt;&lt;a href=&quot;#考试注意事项相关&quot; class=&quot;headerlink&quot; title=&quot;考试注意事项相关&quot;&gt;&lt;/a&gt;考试注意事项相关&lt;/h2&gt;&lt;h3 id=&quot;携带物品</summary>
+      
+    
+    
+    
+    
+    <category term="algorithm" scheme="https://x3b0a1.github.io/tags/algorithm/"/>
+    
+  </entry>
+  
+  <entry>
     <title>字符串复习笔记</title>
     <link href="https://x3b0a1.github.io/2020/11/04/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://x3b0a1.github.io/2020/11/04/%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
