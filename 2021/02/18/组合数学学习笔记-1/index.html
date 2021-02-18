@@ -18,8 +18,7 @@
 <p>开车有三条高速（绿）</p>
 <p>坐高铁有两班（棕）</p>
 <p>那请问一共有几种选择？</p>
-<p>$$3 + 3 + 2 = 8$$</p>
-<p>诶嘿，这就是加法原理。</p>
+<script type="math/tex; mode=display">3 + 3 + 2 = 8</script><p>诶嘿，这就是加法原理。</p>
 <h3 id="乘法原理"><a href="#乘法原理" class="headerlink" title="乘法原理"></a>乘法原理</h3><p>现在我们不去B城，去C城</p>
 <p>但是要经过B城</p>
 <p><img src="./imgs/2.png" alt="乘法原理"></p>
@@ -30,8 +29,7 @@
 <p>当我们走a到b的第8条路，b到c有8种可以选</p>
 <p>因此，A到B有8条路，B到C有8条路</p>
 <p>那一共就有</p>
-<p>$$8\times8 = 64$$</p>
-<p>这就是乘法原理，非常简单。</p>
+<script type="math/tex; mode=display">8\times8 = 64</script><p>这就是乘法原理，非常简单。</p>
 <h2 id="基础排列组合"><a href="#基础排列组合" class="headerlink" title="基础排列组合"></a>基础排列组合</h2><h3 id="排列数"><a href="#排列数" class="headerlink" title="排列数"></a>排列数</h3><p>您和您的伙伴一共8人，要去C城，正在机场排队安检，请问您们有几种排队顺序？</p>
 <p>可以想一下，现在有八个位置</p>
 <p><img src="./imgs/3.png" alt="q1"></p>
@@ -42,8 +40,7 @@
 <p><img src="./imgs/5.png" alt="q3"></p>
 <p>根据乘法原理</p>
 <p>一共有</p>
-<p>$$8\times7\times6\times5\times4\times3\times2\times1 = 8! = 40320 种 $$</p>
-<p>可以发现， $n$ 个元素排列时，一共有 $n!$ 种排法。</p>
+<script type="math/tex; mode=display">8\times7\times6\times5\times4\times3\times2\times1 = 8! = 40320 种</script><p>可以发现， $n$ 个元素排列时，一共有 $n!$ 种排法。</p>
 <p>现在您们8人在候机，发现只有4个椅子，您们有几种坐法？（顺序不同也算一种方法）</p>
 <p>首先，您们8人抢第一个椅子，第一个椅子有8种选择</p>
 <p>然后抢第二个，第二个椅子有7种选择</p>
@@ -51,17 +48,12 @@
 <p>然后抢第四个，第四个椅子有5种选择</p>
 <p>然后？然后剩下的人站着！（</p>
 <p>于是坐法就有</p>
-<p>$$8\times 7\times 6\times\ 5 = 1680种$$ </p>
-<p>替换成字母就是：n个元素排一个长度为m的序列，有多少种排法？</p>
-<p>$$S = n\times(n-1)\times(n-2)\times…\times(n-m+1)$$</p>
-<p>简化可得：</p>
-<p>$$S = \frac{n!}{(n-m)!}$$</p>
-<p>现在我们来看一些概念</p>
+<script type="math/tex; mode=display">8\times 7\times 6\times\ 5 = 1680种</script><p>替换成字母就是：n个元素排一个长度为m的序列，有多少种排法？</p>
+<script type="math/tex; mode=display">S = n\times(n-1)\times(n-2)\times...\times(n-m+1)</script><p>简化可得：</p>
+<script type="math/tex; mode=display">S = \frac{n!}{(n-m)!}</script><p>现在我们来看一些概念</p>
 <p>现在n个元素排一个长度为m的序列，这个排列数我们用$A_n^m$（或$P_n^m$）表示</p>
-<p>$$A_n^m = \frac{n!}{(n-m)!}$$</p>
-<p>前面您8人安检时的排列，即$n=m$时，这样的排列叫做<strong>全排列</strong></p>
-<p>$$A_n^n = n!$$</p>
-<h3 id="组合数"><a href="#组合数" class="headerlink" title="组合数"></a>组合数</h3><p>您到了C城，面前有10架共享单车，您和您的伙伴一共8个人，每人选一架共享单车，有几种选法？(共享单车都是一样的，没有什么顺序之分，别抬杠（（ )</p>
+<script type="math/tex; mode=display">A_n^m = \frac{n!}{(n-m)!}</script><p>前面您8人安检时的排列，即$n=m$时，这样的排列叫做<strong>全排列</strong></p>
+<script type="math/tex; mode=display">A_n^n = n!</script><h3 id="组合数"><a href="#组合数" class="headerlink" title="组合数"></a>组合数</h3><p>您到了C城，面前有10架共享单车，您和您的伙伴一共8个人，每人选一架共享单车，有几种选法？(共享单车都是一样的，没有什么顺序之分，别抬杠（（ )</p>
 </div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">X3B0A1</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://x3b0a1.github.io/2021/02/18/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/">https://x3b0a1.github.io/2021/02/18/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/math/">math</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2021/07/29/about%20this%20blog/"><i class="fa fa-chevron-left">  </i><span>关于本博客</span></a></div><div class="next-post pull-right"><a href="/2020/11/29/14.%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%8A%A0%E6%B3%95/"><span>14.高精度加法</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture)"><div class="layout" id="footer"><div class="copyright">&copy;2020 - 2021 By X3B0A1</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="footer_custom_text">hitokoto</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.8.2"></script><script src="/js/fancybox.js?version=1.8.2"></script><script src="/js/sidebar.js?version=1.8.2"></script><script src="/js/copy.js?version=1.8.2"></script><script src="/js/fireworks.js?version=1.8.2"></script><script src="/js/transition.js?version=1.8.2"></script><script src="/js/scroll.js?version=1.8.2"></script><script src="/js/head.js?version=1.8.2"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
   $('#nav').addClass('is-mobile')
   $('footer').addClass('is-mobile')
